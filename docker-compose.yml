@@ -1,0 +1,74 @@
+services:
+  nanoclaw:
+    build:
+      context: ./nanoclaw
+    container_name: nanoclaw
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./nanoclaw/data:/app/data
+    ports:
+      - "18789:18789"
+    networks:
+      - nano-rpg-net
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  temporal:
+    image: temporalio/auto-setup:latest
+    container_name: temporal
+    restart: unless-stopped
+    ports:
+      - "7233:7233"
+    environment:
+      - DB=postgres12
+      - DB_PORT=5432
+      - POSTGRES_USER=${POSTGRES_USER:-rpg}
+      - POSTGRES_PWD=${POSTGRES_PASSWORD:-rpg}
+      - POSTGRES_SEEDS=postgres
+    networks:
+      - nano-rpg-net
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  temporal-ui:
+    image: temporalio/ui:latest
+    container_name: temporal-ui
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      - TEMPORAL_ADDRESS=temporal:7233
+    networks:
+      - nano-rpg-net
+    depends_on:
+      - temporal
+
+  postgres:
+    image: postgres:16
+    container_name: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-rpg}
+      POSTGRES_USER: ${POSTGRES_USER:-rpg}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-rpg}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    networks:
+      - nano-rpg-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-rpg} -d ${POSTGRES_DB:-rpg}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+networks:
+  nano-rpg-net:
+    driver: bridge
+
+volumes:
+  postgres_data:

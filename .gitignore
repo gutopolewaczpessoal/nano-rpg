@@ -1,0 +1,6 @@
+node_modules/
+.env
+nanoclaw/data/
+*.db
+worker/rpg-worker
+temporal-cli
