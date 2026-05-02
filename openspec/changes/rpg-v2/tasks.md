@@ -7,29 +7,29 @@
 - [x] 1.5 Criar `docker-compose.yml` com os três serviços: `nanoclaw`, `temporal` e `postgres` na rede `nano-rpg-net`
 - [x] 1.6 Configurar volumes no compose: `./nanoclaw/data/` para o NanoClaw, porta 18789 (web UI), porta 7233+8080 (Temporal), porta 5432 (Postgres)
 - [x] 1.7 Confirmar que `docker compose up` sobe os três serviços sem erros e a rede `nano-rpg-net` está criada
-- [ ] 1.8 Fazer primeiro commit e push para `main`
+- [x] 1.8 Fazer primeiro commit e push para `main`
 
 ## 2. NanoClaw — Instalação e Configuração Base
 
-- [ ] 2.1 Clonar NanoClaw dentro de `/home/augus/projects/nano-rpg/` e rodar `bash nanoclaw.sh`
-- [ ] 2.2 Confirmar que a web UI sobe na porta padrão e o processo host está rodando sem erros
-- [ ] 2.3 Criar grupo de agente `mestre` via NanoClaw
-- [ ] 2.4 Criar grupo de agente `zoe` via NanoClaw
-- [ ] 2.5 Criar grupo de agente `rafael` via NanoClaw
-- [ ] 2.6 Confirmar que os três diretórios de grupo existem com `container.json` e `CLAUDE.local.md`
+- [x] 2.1 Clonar NanoClaw dentro de `/home/augus/projects/nano-rpg/` e rodar `bash nanoclaw.sh`
+- [x] 2.2 Confirmar que a web UI sobe na porta padrão e o processo host está rodando sem erros
+- [x] 2.3 Criar grupo de agente `mestre` via NanoClaw
+- [x] 2.4 Criar grupo de agente `zoe` via NanoClaw
+- [x] 2.5 Criar grupo de agente `rafael` via NanoClaw
+- [x] 2.6 Confirmar que os três diretórios de grupo existem com `container.json` e `CLAUDE.local.md`
 
 ## 3. OpenRouter — Configuração e Validação
 
-- [ ] 3.1 Registrar chave de API do OpenRouter no Agent Vault do NanoClaw
-- [ ] 3.2 Instalar skill `/add-opencode` no grupo `mestre`
-- [ ] 3.3 Instalar skill `/add-opencode` no grupo `zoe`
-- [ ] 3.4 Instalar skill `/add-opencode` no grupo `rafael`
-- [ ] 3.5 Configurar `OPENCODE_PROVIDER=openrouter` e `OPENCODE_MODEL` em cada `container.json`
-- [ ] 3.6 Enviar mensagem de teste para o Mestre e confirmar resposta via OpenRouter nos logs
-- [ ] 3.7 Enviar mensagem de teste para Zoe e confirmar resposta via OpenRouter
-- [ ] 3.8 Enviar mensagem de teste para Rafael e confirmar resposta via OpenRouter
-- [ ] 3.9 Reiniciar container de um agente e confirmar que contexto anterior é preservado
-- [ ] 3.10 Commit e push — sessão 1 completa e validada ✓
+- [x] 3.1 Registrar chave de API do OpenRouter no Agent Vault do NanoClaw
+- [x] 3.2 Instalar skill `/add-opencode` no grupo `mestre`
+- [x] 3.3 Instalar skill `/add-opencode` no grupo `zoe`
+- [x] 3.4 Instalar skill `/add-opencode` no grupo `rafael`
+- [x] 3.5 Configurar `OPENCODE_PROVIDER=openrouter` e `OPENCODE_MODEL` em cada `container.json`
+- [x] 3.6 Enviar mensagem de teste para o Mestre e confirmar resposta via OpenRouter nos logs
+- [x] 3.7 Enviar mensagem de teste para Zoe e confirmar resposta via OpenRouter
+- [x] 3.8 Enviar mensagem de teste para Rafael e confirmar resposta via OpenRouter
+- [x] 3.9 Reiniciar container de um agente e confirmar que contexto anterior é preservado
+- [x] 3.10 Commit e push — sessão 3 completa e validada ✓
 
 ## 4. Temporal — Worker Go
 
